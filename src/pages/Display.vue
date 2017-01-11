@@ -1,30 +1,32 @@
 <template>
   <div id="app">
-    <img src="../assets/logo.png">
-    <f-b></f-b>
+  <!-- <h1>{{$route.params.cid }}</h1> -->
+    <navbox></navbox> 
+    <product-container :pid="parseInt($route.params.cid)"></product-container>
   </div>
 </template>
 
 <script>
-import Hello from '../components/Hello'
 
-import FB from '../components/FB'
+//import FB from '../components/FB'
 
+import Navbox from '../components/nav'
+import ProductContainer from '../components/product_container'
 export default {
   name: 'app',
   components: {
-    FB
+    Navbox,
+    ProductContainer
+  },
+  data(){
+    return {
+      nav:[]
+    }
+  },
+  created(){
+    console.log(this.$route.params.cid|0 )
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+

@@ -3,10 +3,25 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+
+Vue.use(MuseUI)
+
+Vue.use(VueResource)
 
 // init
 Vue.use(VueRouter)
 
+
+// Vue.http.options.headers={
+//   'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+// };
+// // post的时候会把JSON对象转成formdata
+// Vue.http.options.emulateJSON=true;
+// //Vue.http.options.emulateJSON = true;
+// console.log(Vue.http.options)
 // page
 import Home from './pages/Home.vue';
 import Display from './pages/Display.vue';
@@ -24,6 +39,11 @@ const router = new VueRouter({
       component: Home
     },
     {
+      path: '/display/:cid',
+      name: 'display',
+      component: Display
+    },
+     {
       path: '/display',
       name: 'display',
       component: Display
@@ -37,6 +57,7 @@ const router = new VueRouter({
     { path: '/*', redirect: '/home' }
   ]
 });
+
 
 
 /* eslint-disable no-new */

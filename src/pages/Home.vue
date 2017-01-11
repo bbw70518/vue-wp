@@ -1,18 +1,18 @@
 .<template>
   <div id="app">
-    <h1>home</h1>
-    <f-b></f-b>
+    <h1>暨大二手拍賣平台</h1>
+    <p></p>
+    <img src="" alt="">
   </div>
 </template>
 
 <script>
-import FB from '../components/FB'
+
 
 export default {
   name: 'app',
-  components: {
-    FB
-  }
+  
+
 }
 </script>
 
