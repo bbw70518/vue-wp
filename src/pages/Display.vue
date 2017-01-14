@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-  <!-- <h1>{{$route.params.cid }}</h1> -->
     <navbox></navbox> 
-    <product-container :pid="parseInt($route.params.cid)"></product-container>
+    <h1>商品陳列</h1>
+    <product-container :ccid="parseInt($route.params.cid)"></product-container>
+    <own-footer></own-footer>  
   </div>
 </template>
+<!-- pages/Display.vue -->
 
 <script>
 
@@ -12,11 +14,14 @@
 
 import Navbox from '../components/nav'
 import ProductContainer from '../components/product_container'
+import OwnFooter from '../components/footer'
+
 export default {
   name: 'app',
   components: {
     Navbox,
-    ProductContainer
+    ProductContainer,
+    OwnFooter
   },
   data(){
     return {
@@ -29,4 +34,8 @@ export default {
 }
 </script>
 
-
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>

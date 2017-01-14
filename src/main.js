@@ -4,16 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import MuseUI from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css'
 
-Vue.use(MuseUI)
+
 
 Vue.use(VueResource)
 
 // init
 Vue.use(VueRouter)
-
+Vue.http.options.xhr = {withCredentials: true}
 
 // Vue.http.options.headers={
 //   'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'

@@ -1,0 +1,3 @@
+INSERT INTO `WP_ncnusales`.`Product` (`Name`, `Price`,`Picture`) VALUES ('華碩 ROG Sica 可更換微動開關，左右手通用電競滑鼠', '1090','1');
+
+INSERT INTO `WP_ncnusales`.`CP` (`CID`, `PID`) VALUES ('6', '24');

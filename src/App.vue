@@ -1,9 +1,9 @@
 <template>
-<div>
+
 <!--     <button v-show="!status" @click="FBLogin();">Login</button>
     <button v-show="status" @click="FBLogout();">Logout</button> -->
   	<router-view></router-view>
-  </div>
+  
 </template>
 
 <script>
@@ -38,22 +38,13 @@ export default {
     }   
   },
     created: function() {
+      console.log('aaa')
     window.fbAsyncInit = ()=> {
       FB.init({
         appId      : '107259369781545',
         xfbml      : true,
         version    : 'v2.8'
       	});
-      FB.getLoginStatus((response)=> {
-        console.log(response);
-        if (response.status == "connected") {
-          this.status = true;
-         
-        }
-        else{
-          this.status = false;
-        }
-     });
 	}
 	(function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -67,7 +58,14 @@ export default {
 </script>
 
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
   html,body{
     height: 100%;
+    /*background-color: #ace;*/
+    padding: 0px;
+    margin: 0px;
+    font-family: 'cwTeXFangSong', 'Russo One', cursive , serif;
+    font-family: ;
   }
+
 </style>

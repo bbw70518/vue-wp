@@ -1,21 +1,24 @@
 <template>
   <div id="test">
-    <button v-show="!status" @click="FBLogin();">Login</button>
-    <button v-show="status" @click="FBLogout();">Logout</button>
+    <button v-show="status"  class="btn btn-success btn-lg" @click="FBLogin();">FB-Login</button>
+    <button v-show="!status"  class="btn btn-danger btn-lg"@click="FBLogout();">FB-Logout</button>
   </div>
 
 
 </template>
 
 <script>
-
+import cookie from '../js/cookie'
 export default {
   name: 'fb',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      status: false,
     }
+  },
+  props: {
+    // attribute name: Type
+    status: Boolean,
   },
   methods:{
     FBLogin(){
@@ -23,10 +26,24 @@ export default {
       FB.login((response)=>{
         if (response.status === 'connected') {
           this.status=true;
+          FB.api('/me', (response)=> {
+
+         this.$http.get("http://10.21.21.210:8080/api/login/"+response.id)
+        .then((response) => {
+          console.log(response.data)
+          cookie.set('e',response.data.MID,1);
+          window.location = '../Display';
+        })
+        .catch(function(response) {
+          console.log(response)
+        })
+                   //
+         });
+        
         } else if (response.status === 'not_authorized') {
-          this.status=false;
+          window.location = '../home';
         } else {
-          this.status=false;
+          window.location = '../home';
         }
       });
       
@@ -35,7 +52,8 @@ export default {
       var tmp_status;
       FB.logout((response)=> {
         this.status=false;
-        console.log("Logout successful!!")
+        if (response.status != 'connected') {
+        }
       });
     }   
   },
@@ -48,17 +66,6 @@ export default {
       });
 
       //This function should be here, inside window.fbAsyncInit
-      FB.getLoginStatus((response)=> {
-        console.log(response);
-        if (response.status == "connected") {
-          this.status = true;
-          // window.location = '../Display';
-        }
-        else{
-          this.status = false;
-        }
-     });
-
    };
 
     (function(d, s, id){

@@ -1,23 +1,29 @@
 <template>
   <nav class="navbar navbar-inverse">
     <ul class="nav navbar-nav">
+      <li class="active"><a href="../Display"><h4>NCNU 二手拍賣</h4> <span class="sr-only">(current)</span></a></li>
       <li class="dropdown" v-for="item in nav">
-
-      <a  class="dropdown-toggle" data-toggle="dropdown">{{ item.Name}}</a>
+        <a  class="dropdown-toggle" data-toggle="dropdown"><h4> {{ item.Name}}</h4></a>
         <navchild :cid="item.CID"/>
-        
       </li>
+    </ul>
 
+    <ul class="nav navbar-nav navbar-right">
+      <f-b :status='false'></f-b>
     </ul>
   </nav>
+
 </template>
 
 <script>
 
 import Navchild from './navchild'
+import FB from '../components/FB'
+
 export default {
   components: {
-    Navchild
+    Navchild,
+    FB
   },
   data(){
   	return{
@@ -37,3 +43,17 @@ export default {
   }
 }
 </script>
+
+<style>
+  .dropdown>a>h4{
+    color: white;
+  }
+  .dropdown:hover {
+    background-color: #FF8040;
+  }
+  .navbar-right {
+    position: absolute;
+    right: 2%;
+    top: 15%;
+  }
+</style>

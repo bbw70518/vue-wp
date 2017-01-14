@@ -1,6 +1,6 @@
 <template>
   <div id="product_singal" class="col-md-3">
-    <p>{{ cardbox.Name}}</p>
+    <h3>{{ cardbox.Name}}</h3>
     <span>NTD {{ cardbox.Price}}</span>
     <img v-if="cardbox.Picture" v-bind:src="'http://10.21.21.210:8080/api/img/img-'+cardbox.PID+'.jpg'" alt="route error">
     <button v-if="!cardbox.Buyer_mid" class="btn btn-success btn-lg" @click="Buy();">訂購</button>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-
+import cookie from '../js/cookie'
 export default {
   components: {
   },
@@ -19,24 +19,11 @@ export default {
   },
   methods:{
     Buy(){
-      //this.$http.options.emulateJSON = true;
-      console.log(this.$http)
-      // $.ajax({
-      //   type: "PUT",
-      //   url: "http://10.21.21.210:8080/api/buyer/2",
-      //   data: JSON.stringify({pid:17}),// now data come in this function
-      //   contentType: "application/json; charset=utf-8",
-      //   crossDomain: true,
-      // })
-      //   .done(function( msg ) {
-      //     console.log(msg)
-      //   });
-      console.log('post')
-      this.
-      // this.$http.post("http://10.21.21.210:8080/api/buyer/2")
-      // .then((response) => {
-      //  console.log(response) 
-      // })
+      
+      this.$http.get("http://10.21.21.210:8080/api/buyer/put/"+this.cardbox.PID+"/"+cookie.get('e'))
+      .then((response) => {
+       this.$parent.getcard()
+      })
 
      // console.log(this.$parent.card=[])
     }
@@ -50,16 +37,23 @@ export default {
   #product_singal{
     display: inline-block;
     /*background-color:blue; */
+    margin: 50px 40px;
     border: 5px solid black;
     font-size: 25px;
     color:black;
-    height:500px; 
+    height:500px;
+    width: 300px;
   }
   #product_singal>img{
-    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    left: 10px;
+    height: 300px;
+    width: 250px;
   }
   #product_singal>span{
     color:red;
+    width: 100%;
     font-size: 20px;
     text-align: center;
   }

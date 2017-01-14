@@ -1,7 +1,8 @@
 <template>
     <ul class="dropdown-menu">
-   		<li v-for="item in nav"><a v-bind:href="'../display/'+item.CID">{{ item.Name}}</a></li>
+   		<li v-for="item in nav"><a v-bind:href="'../display/'+item.CID"><h4> {{ item.Name}}</h4></a></li>
   	</ul>
+    large 
 </template>
 
 <script>

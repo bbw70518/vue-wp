@@ -3,6 +3,7 @@
     <product-card v-for="item in card" :cardbox="item"></product-card>
   </div>
 </template>
+<!-- components/product_container.vue -->
 
 <script>
 
@@ -13,23 +14,24 @@ export default {
   },
   props: {
     // attribute name: Type
-    pid: Number,
+    ccid: Number,
   },
   data(){
   	return{
-  		card:[]
+  		card:[],
   	}
 
   },
   methods:{
     getcard:function(){
     var tmp_url ;
-    if(this.pid){
-      tmp_url = "http://10.21.21.210:8080/api/product/"+this.pid;
+    if(this.ccid){
+      tmp_url = "http://10.21.21.210:8080/api/product/"+this.ccid;
     }
     else{
       tmp_url = "http://10.21.21.210:8080/api/product/";
     }
+    console.log(tmp_url)
     // console.log("http://10.21.21.210:8080/api/product/"+this.pid);
     this.$http.get(tmp_url)
         .then((response) => {
